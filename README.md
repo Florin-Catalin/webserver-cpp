@@ -11,6 +11,8 @@ creates an image containing all the tools installed correctly and use it for bot
 as text editor support bash
 
 ### Tutorial
+
+#### Create a dockerfile 
 ```bash
 mkdir webcpp
 cd cppweb
@@ -32,6 +34,7 @@ RUN apt-get -qq update
 ```
 RUN apt-get -qq upgrade 
 ```
+
 - install cmake cross-platform build-tool to create makefile used to compile and link the code 
 ```
 RUN apt-get -qq install cmake
@@ -43,8 +46,24 @@ RUN apt-get -qq install cmake
 RUN apt-get -qq install libboost-all-dev=1.62.0.1
 ```
 - install the essential kit and efficient tcmalloc minimal library
-- add some more tools to our image 
+- add some more tools to our image like allocating and freeing memory
 ```
 RUN apt-get -qq install build-essential libtcmalloc-minimal4 && \
-  ln - /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so
+  ln -s /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so
 ```
+
+#### Running the dockerfile 
+```
+docker build -t cppbox .
+```
+
+#### TROUBLESHOOTING 
+- running the dockerfile will give a WARNING 'delaying package configuration, since apt-utils is not installed'
+- bug that won't stop the installation
+```
+RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
+```
+
+- Security warning appearing when building a Docker image from Windows against a non-Windows Docker host
+- Warning was added, because the Windows filesystem does not have an option to mark a file as 'executable'
+- The files will be 'executable' by default 
