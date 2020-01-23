@@ -44,7 +44,7 @@ RUN apt-get -qq install libboost-all-dev=1.62.0.1
 ```
 - install the essential kit and efficient tcmalloc minimal library
 - add some more tools to our image 
-``
+```
 RUN apt-get -qq install build-essential libtcmalloc-minimal4 && \
   ln - /usr/lib/libtcmalloc_minimal.so.4 /usr/lib/libtcmalloc_minimal.so
-  ```
+```
