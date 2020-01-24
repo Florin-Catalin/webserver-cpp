@@ -142,4 +142,6 @@ or define "BOOST_ERROR_CODE_HEADER_ONLY"
 
 --------------------------
 - when running 'make' command gives 'pthread_create - not found ' which is a well-known CMake bug
+--------------------------
+- receive 'Text file busy' when trying to run 'make' command in 'build' directory when trying to modify an executable while it is executing 
 
