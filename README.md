@@ -10,6 +10,18 @@ creates an image containing all the tools installed correctly and use it for bot
 #### Atom 
 as text editor support bash
 
+#### Deploying the container to Heroku
+- install Heroku cli 64 (Docker does not support 32 bits )
+```bash
+heroku --version
+```
+  1. "Containerize" the app
+  1. Heroku login.
+  1. Create a Heroku app.
+  1. Push the container and release it
+  1. Test in the browser
+
+- first need to persist the volume to the docker image ( volumes are ephemeral things and not part of the docker image )
 ### Tutorial
 
 #### Create a dockerfile 
