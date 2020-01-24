@@ -116,6 +116,7 @@ In my case is
 docker run -v C:\Users\KJ\Desktop\cppweb:/usr/src/cppweb -p 8080:8080 -e PORT=8080 cppbox:latest /usr/src/cppweb/hello_crow/build/hello_crow
 ```
 - /usr/src/cppweb/hello_crow/build/hello_crow is the absolute path to the executable 
+![Preview](https://github.com/Florin-Catalin/WAPICPP/blob/master/readme/preview1.PNG)
 
 
 #### TROUBLESHOOTING 
