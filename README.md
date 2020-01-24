@@ -56,6 +56,17 @@ RUN apt-get -qq install build-essential libtcmalloc-minimal4 && \
 ```
 docker build -t cppbox .
 ```
+```
+docker run -ti cppbox:latest bash
+```
+- checking if install succeded 
+```
+find /usr -name libboost*.*
+```
+- for exit the container 
+```
+exit
+```
 
 #### TROUBLESHOOTING 
 - running the dockerfile will give a WARNING 'delaying package configuration, since apt-utils is not installed'
