@@ -102,6 +102,22 @@ cd build
 cmake ..
 ```
 
+- each docker container is by default isolated, none of its' ports are open, so accessing localhost:18080 won't work
+
+#### Opening a port
+- -p opens a port-the number to the left of the colon is the host machine's port number; the number to the right is the container's port number
+- -e creates an environment variable
+```
+docker run -v <host>:<container> -p <host port>:<container port> -e PORT=8081 <image> <app to run>
+```
+---------------
+In my case is 
+```
+docker run -v C:\Users\KJ\Desktop\cppweb:/usr/src/cppweb -p 8080:8080 -e PORT=8080 cppbox:latest /usr/src/cppweb/hello_crow/build/hello_crow
+```
+- /usr/src/cppweb/hello_crow/build/hello_crow is the absolute path to the executable 
+
+
 #### TROUBLESHOOTING 
 Problems I encounter
 
