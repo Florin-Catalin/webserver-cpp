@@ -93,9 +93,19 @@ To check if volume was created correctly, create a file on the host machine vers
 cd /usr/src/cppweb
 touch MY_FILE.txt
 ```
-
+-----------------------
+#### Building Crow
+- header only, crow_all.h
+```
+mkdir build
+cd build
+cmake ..
+```
 
 #### TROUBLESHOOTING 
+Problems I encounter
+
+-----------------------------
 - running the dockerfile will give a WARNING 'delaying package configuration, since apt-utils is not installed'
 - bug that won't stop the installation
 ```
@@ -105,3 +115,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends apt-utils
 - Security warning appearing when building a Docker image from Windows against a non-Windows Docker host
 - Warning was added, because the Windows filesystem does not have an option to mark a file as 'executable'
 - The files will be 'executable' by default 
+-----------------------------------
+
+- when running 'make' command to build crow might give 
+```
+undefined reference to `boost::system::system_category()
+```
+One solution is to add 'add_definitions(-DBOOST_ERROR_CODE_HEADER_ONLY)' to CMakeLists.txt 
+or define "BOOST_ERROR_CODE_HEADER_ONLY"
+
+--------------------------
+- when running 'make' command gives 'pthread_create - not found ' which is a well-known CMake bug
+
