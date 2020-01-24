@@ -68,6 +68,33 @@ find /usr -name libboost*.*
 exit
 ```
 
+#### Creating a Volume 
+- work on host machine, build&run on the container 
+- volume is directory shared by the host machine and one or more docker containers  
+- -v create a volume option
+- \<host directory> the directory on the host machine 
+- \<container directory> the directory on the docker container 
+- \<image> the name of the image to run 
+  
+```
+docker run -v <host>:<container> -ti <image> bash
+```
+---------------
+My user is KJ so it will be 
+- the flag -ti puts docker in terminal interactive mode 
+- cppbox:lates is the local version of the cppbox image 
+- bash puts it in the container's bash shell
+```
+docker run -v C:/Users/KJ/Desktop/cppweb:/usr/src/cppweb -ti cppbox:latest bash
+```
+
+To check if volume was created correctly, create a file on the host machine version of the box
+```
+cd /usr/src/cppweb
+touch MY_FILE.txt
+```
+
+
 #### TROUBLESHOOTING 
 - running the dockerfile will give a WARNING 'delaying package configuration, since apt-utils is not installed'
 - bug that won't stop the installation
