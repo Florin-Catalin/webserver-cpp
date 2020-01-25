@@ -178,6 +178,11 @@ heroku open -a hidden-depths-57738
  docker tag f01f1efcf9b0 flordocker/hello_crow:latest
  docker push flordocker/hello_crow
  ```
+ 
+ #### HTML
+ - ways to create HTML pages : pure HTML file or Mixed HTML and Mustache templates
+ - Mustache mix data in HTML
+ - each webpage needs : an HTML file in public directory and a route handler
 #### TROUBLESHOOTING 
 Problems I encounter
 
@@ -204,4 +209,9 @@ or define "BOOST_ERROR_CODE_HEADER_ONLY"
 - when running 'make' command gives 'pthread_create - not found ' which is a well-known CMake bug
 --------------------------
 - receive 'Text file busy' when trying to run 'make' command in 'build' directory when trying to modify an executable while it is executing 
+-----------------------------------
+- receive 'Not found' when working in build dir and forget '..'
+```cpp
+ifstream in("..public/index.html",ifstream::in) ;
+```
 
