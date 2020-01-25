@@ -10,18 +10,7 @@ creates an image containing all the tools installed correctly and use it for bot
 #### Atom 
 as text editor support bash
 
-#### Deploying the container to Heroku
-- install Heroku cli 64 (Docker does not support 32 bits )
-```bash
-heroku --version
-```
-  1. "Containerize" the app
-  1. Heroku login.
-  1. Create a Heroku app.
-  1. Push the container and release it
-  1. Test in the browser
 
-- first need to persist the volume to the docker image ( volumes are ephemeral things and not part of the docker image )
 ### Tutorial
 
 #### Create a dockerfile 
@@ -129,6 +118,55 @@ docker run -v C:\Users\KJ\Desktop\cppweb:/usr/src/cppweb -p 8080:8080 -e PORT=80
 ```
 - /usr/src/cppweb/hello_crow/build/hello_crow is the absolute path to the executable 
 ![Preview](https://github.com/Florin-Catalin/WAPICPP/blob/master/readme/preview1.PNG)
+
+#### Deploying the container to Heroku
+- install Heroku cli 64 (Docker does not support 32 bits )
+```bash
+heroku --version
+```
+  1. "Containerize" the app
+  1. Heroku login.
+  1. Create a Heroku app.
+  1. Push the container and release it
+  1. Test in the browser
+
+- first need to persist the volume to the docker image ( volumes are ephemeral things and not part of the docker image )
+----------------------
+##### Put the app in the docker container 
+- to find the container id
+```bash
+docker ps
+```
+- copy starting from the current directory . (which is cppweb) and the name
+-e.g.
+```bash
+docker cp . ccb3ec9fc61b:/usr/src/cppweb
+docker commit ccb3ec9fc61b hello_crow:latest
+```
+- create a Dockerfile
+- use the hello_crow that we just commited
+- give it a working directory (build is where the running version of the app is ) 
+- in that directory lauch the hello_crow app
+```bash
+FROM hello_crow
+WORKDIR /usr/src/cppweb/hello_crow/build
+CMD ["./hello_crow"]
+```
+- within the working directory login in heroku
+```
+cd hello_crow
+heroku login
+heroku container:login
+heroku create
+```
+- the next step is to build it ( update the image), release and start the app 
+```
+docker build -t hello_crow .
+heroku container:push web -a hidden-depths-57738 
+heroku container:release web -a hidden-depths-57738
+heroku open -a hidden-depths-57738
+```
+![My url on the web is ](https://hidden-depths-57738.herokuapp.com)
 
 
 #### TROUBLESHOOTING 
