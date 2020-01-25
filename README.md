@@ -168,7 +168,16 @@ heroku open -a hidden-depths-57738
 ```
 ![My url on the web is ](https://hidden-depths-57738.herokuapp.com)
 
-
+#### Save the container to Docker Hub
+ 1. Log in to Docker Hub.
+ 1. Tag the image.
+ 1. Push the image.
+ 1. Verify the push.
+ ```
+ docker login --username=flordocker
+ docker tag f01f1efcf9b0 flordocker/hello_crow:latest
+ docker push flordocker/hello_crow
+ ```
 #### TROUBLESHOOTING 
 Problems I encounter
 
