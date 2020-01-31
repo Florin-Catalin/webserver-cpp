@@ -102,9 +102,6 @@ mkdir build
 cd build
 cmake ..
 ```
-
-- each docker container is by default isolated, none of its' ports are open, so accessing localhost:18080 won't work
-
 #### Opening a port
 - -p opens a port-the number to the left of the colon is the host machine's port number; the number to the right is the container's port number
 - -e creates an environment variable
@@ -213,5 +210,14 @@ or define "BOOST_ERROR_CODE_HEADER_ONLY"
 - receive 'Not found' when working in build dir and forget '..'
 ```cpp
 ifstream in("..public/index.html",ifstream::in) ;
+```
+-----------------------------------
+When running localhost:18080
+##### This site can't be reached. 
+localhost refused to connect 
+- one possible cause is that the port is not opened : 
+- each docker container is by default isolated, none of its' ports are open, so accessing localhost:18080 won't work
+```
+docker run -v <host>:<container> -p <host port>:<container port> -e PORT=8081 <image> <app to run>
 ```
 
